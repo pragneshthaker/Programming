@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<head>
+	
+	<Title> Forms Inside Table</Title>
+	<!-- Script to include Date Picker in the -->
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	
+	
+	<link rel="stylesheet" href="/resources/demos/style.css">
+
+	<script>
+		$(function() {
+			$( "#datepicker" ).datepicker();
+		});
+	</script>
+	
+    <script>
+		var errorFlag;
+		var nameErrorFlag = false;
+		var usernameErrorFlag = false;
+		var newPasswordErrorFlag = false;
+		var confirmPasswordErrorFlag = false;
+		var phoneNumberErrorFlag = false;
+		$(document).ready(function(){
+			
+			
+			$("#txtName").change(function(){
+				var name = $("#txtName").val();
+				if(name.length<3)
+				{
+					alert("The name must have at least 3 char");
+					nameErrorFlag = true;
+					return;
+				}
+				var pattern1 = name.match(/[a-zA-Z]+/);
+				if(name.localeCompare(pattern1) !=0){
+					alert("Enter Valid Name");
+					nameErrorFlag = true;
+				}
+				nameErrorFlag = false;
+			});
+					
+			$("#txtUserName").change(function(){
+				var username = $("#txtUserName").val();
+				if(username.length < 5)
+				{
+					alert("The name must have at least 5 char  :");
+					usernameErrorFlag = true;
+					return;
+				}	
+				<!-- if(username.match(/[a-zA-Z0-9]+/).localeCompare(username)!=0) -->
+				var pattern1 = username.match(/[a-zA-Z0-9]+/);
+				
+				if( username.localeCompare(pattern1)!=0 )
+				{
+				  alert("User name can have small a-z capital A-Z and 0-9 digits:" + pattern1);
+				  usernameErrorFlag = true;
+					return;
+				}
+				usernameErrorFlag = false;
+				
+			});
+						
+			$("#createPassword").change(function(){
+				
+				var newPassword = $("#createPassword").val();
+				if( newPassword.length < 8)
+				{
+					alert("The password must have at least 8 char  :");
+					newPasswordErrorFlag = true;
+					return;
+				}
+				var pattern1 = newPassword.match(/[a-zA-Z0-9]+/);
+				
+				if( newPassword.localeCompare(pattern1) !=0 ){
+				
+					alert("Password can have small a-z capital A-Z and 0-9 digits only:" + pattern1);
+					newPasswordErrorFlag = true;
+					return;
+				}
+				newPasswordErrorFlag = false;
+			});
+			
+			$("#retypePassword").change(function(){
+				if($("#createPassword").val().localeCompare($( "#retypePassword").val() ) !=0 )
+				{
+					alert(" \"Create passwprd\" and \"Retype password\" must match");
+					confirmPasswordErrorFlag = true;
+					return;
+				}
+				confirmPasswordErrorFlag = false;
+			});
+			
+			$("#txtPhoneNumber").change( function(){
+				var phonNumber = ("#txtPhoneNumber").val();
+				var pattern1 = phonNumber.match(/\d{10}/);
+				if(pattern1.localeCompare(phonNumber) !=0)
+				{
+					alert("Please enter 10 digit Number only(exclude 0 prefex in std code) ");
+					phoneNumberErrorFlag = true;
+					return;
+				}
+				phoneNumberErrorFlag = false;
+			});
+			
+		});
+    </script>
+    	
+</head>
+
+<body>
+	<table>
+		<form id="tableform">
+			<tr>
+				<td>Name</td> <td><input type="text" id="txtName" required onchange= /></td>
+			</tr>
+				
+			<tr>
+				<td>User Name</td> <td> <input type="text" id="txtUserName" required /></td>
+			</tr>
+			
+			<tr>
+				<td>Create Password</td> <td> <input type="password" id="createPassword" required /> </td>
+			</tr>
+			
+			<tr>
+				<td>Retype Password</td> <td> <input type="password" id="retypePassword" required /> </td>
+			</tr>
+			
+			<tr>
+				<td>Phone Number</td> <td><input type="text" id="txtPhoneNumber"/></td>
+			</tr>
+			
+			<tr>
+				<td>Email ID</td> <td> <input type="email" id="emailId" </td>
+			</tr>
+			
+			<tr>
+				<td>Date Of Birth(MM/DD/YYYY)</td> <td> <input type="text" id="datepicker" required >  </td>
+			</tr>
+			
+			<tr>
+				<td>Courses Offered</td>
+				<td>
+					<select id="selCourses" >
+					  <option value="BTech">B.Tech
+					  <option value="MTech">M.Tech
+					  <option value="MS">M.Tech (Research)
+					  <option value="PhD">PhD
+					</select>
+				</td>
+				
+			</tr>
+					
+			
+			<tr>
+				<td>Subject </td> 
+				<td> 
+					<input type="checkbox" id="chkCourse" value ="Algorithms">Algorithms
+					<input type="checkbox" id="chkCourse" value ="Machine Learning">Machine Learning
+					<input type="checkbox" id="chkCourse" value ="Statistic">Satistics
+				</td>
+			</tr>
+			
+			<tr>
+				<td>Gender</td>
+				<td>
+					<input type="radio" name="gender" value="male" checked> Male
+					<input type="radio" name="gender" value="female"> Female
+				</td>
+			</tr>
+			
+			<tr>
+				<td> <input id="button1" type="submit"  value = "Click Me"> </td>
+			</tr>
+			
+		</form>
+	</table>
+	
+	
+	
+	
+</body>

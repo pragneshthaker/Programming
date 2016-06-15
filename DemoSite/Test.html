@@ -1,0 +1,27 @@
+<form action="" method="POST">
+  <p>
+    E-mail:
+    <input required="required" placeholder="mail@website.com" type="email">
+  </p>
+  <p>
+    User name: (only a-z characters)
+    <input pattern="^([a-zA-Z)$" required="required" maxlength="20" type="text">
+  </p>
+  <p>
+    Favorite color
+    <input name="color" list="the-colors" type="text">
+    <datalist id="the-colors">
+      <option>Green</option>
+      <option>Blue</option>
+      <option>Red</option>
+    </datalist>
+  </p>
+  <input type="submit">
+</form>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.8/jquery.form-validator.min.js"></script>
+<script>
+  $.validate({
+    modules : 'html5'
+  });
+</script>
